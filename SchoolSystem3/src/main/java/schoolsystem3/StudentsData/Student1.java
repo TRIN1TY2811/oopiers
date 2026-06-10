@@ -11,7 +11,7 @@ import javax.swing.*;
 
 public class Student1 extends JFrame implements ActionListener {
 
-    private JButton btnAttendance, btnGrades, btnBack;
+    private JButton btnAttendance, btnGrades, btnBack, btnProfile;
 
     private JLabel lblTitle;
     private JLabel lblPersonalTitle;
@@ -58,65 +58,27 @@ public class Student1 extends JFrame implements ActionListener {
 
         // ================= GRADES BUTTON =================
         btnGrades = new JButton("Grades");
-        btnGrades.setBounds(70, 100, 220, 40);
+        btnGrades.setBounds(170, 100, 220, 40);
         btnGrades.setFont(new Font("Arial", Font.BOLD, 18));
 
         pnlPanel.add(btnGrades);
 
         // ================= ATTENDANCE BUTTON =================
         btnAttendance = new JButton("Attendance");
-        btnAttendance.setBounds(310, 100, 220, 40);
+        btnAttendance.setBounds(170, 200, 220, 40);
         btnAttendance.setFont(new Font("Arial", Font.BOLD, 18));
 
         pnlPanel.add(btnAttendance);
+        
+        // ================= PROFILE BUTTON =================
+        btnProfile = new JButton("Student");
+        btnProfile.setBounds(170, 300, 220, 40);
+        btnProfile.setFont(new Font("Arial", Font.BOLD, 18));
 
-        // ================= PERSONAL INFO TITLE =================
-        lblPersonalTitle = new JLabel("Personal Information", SwingConstants.CENTER);
-        lblPersonalTitle.setBounds(0, 190, 560, 40);
-        lblPersonalTitle.setFont(new Font("Arial", Font.BOLD, 20));
+        pnlPanel.add(btnProfile);
 
-        pnlPanel.add(lblPersonalTitle);
-
-        // ================= PERSONAL INFO PANEL =================
-        pnlPersonal = new JPanel();
-        pnlPersonal.setLayout(null);
-        pnlPersonal.setBounds(70, 230, 420, 180);
-        pnlPersonal.setBackground(new Color(240, 240, 240, 180));
-
-        pnlPanel.add(pnlPersonal);
-
-        // ================= STUDENT DETAILS =================
-
-        lblName = new JLabel("Name: James Earl Amodia");
-        lblName.setBounds(20, 20, 350, 25);
-        lblName.setFont(new Font("Arial", Font.PLAIN, 16));
-
-        pnlPersonal.add(lblName);
-
-        lblBirthdate = new JLabel("Birthdate: Nov 28, 2005");
-        lblBirthdate.setBounds(20, 50, 350, 25);
-        lblBirthdate.setFont(new Font("Arial", Font.PLAIN, 16));
-
-        pnlPersonal.add(lblBirthdate);
-
-        lblCourse = new JLabel("Course: Bachelor of Science in Information Technology");
-        lblCourse.setBounds(20, 80, 380, 25);
-        lblCourse.setFont(new Font("Arial", Font.PLAIN, 16));
-
-        pnlPersonal.add(lblCourse);
-
-        lblGender = new JLabel("Gender: Male");
-        lblGender.setBounds(20, 110, 350, 25);
-        lblGender.setFont(new Font("Arial", Font.PLAIN, 16));
-
-        pnlPersonal.add(lblGender);
-
-        lblYear = new JLabel("Year Level: 2nd Year");
-        lblYear.setBounds(20, 140, 350, 25);
-        lblYear.setFont(new Font("Arial", Font.PLAIN, 16));
-
-        pnlPersonal.add(lblYear);
-
+  
+        
         // ================= BACK BUTTON =================
         btnBack = new JButton("Back");
         btnBack.setBounds(650, 620, 100, 30);

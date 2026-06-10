@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
+import schoolsystem3.StudentsData.Student1;
 /**
  *
  * @author admin
@@ -91,7 +92,7 @@ public class Homepage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         dispose();
         if(e.getSource()==btnStud){
-            StudentLogIn sc = new StudentLogIn();
+            Student1 sc = new Student1();
             sc.setVisible(true);
         }
         else if(e.getSource() == btnTch) {
