@@ -145,54 +145,60 @@ public class Student1Attendance extends JFrame implements ActionListener {
     }
 
     // ================= DATABASE SEARCH =================
-    private void searchStudent() {
+   private void searchStudent() {
 
-        String key = txtSearch.getText().trim();
+    String key = txtSearch.getText().trim();
+
+    try (Connection conn = DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/schoolsystemdb",
+            "root",
+            "")) {
+
+        PreparedStatement pst;
 
         if (key.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Enter ID or Name first!");
-            return;
-        }
 
-        try (Connection conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/schoolsystemdb",
-                "root",
-                "")) {
+            String sql = "SELECT * FROM oopattendance";
+            pst = conn.prepareStatement(sql);
+
+        } else {
 
             String sql = "SELECT * FROM oopattendance WHERE ID=? OR Name=?";
-            PreparedStatement pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement(sql);
             pst.setString(1, key);
             pst.setString(2, key);
-
-            ResultSet rs = pst.executeQuery();
-
-            clearOOP();
-
-            int i = 0;
-
-            while (rs.next() && i < 10) {
-
-                oopID[i].setText(rs.getString("ID"));
-                oopName[i].setText(rs.getString("Name"));
-
-                oopWeek[i][0].setText(rs.getString("Week1"));
-                oopWeek[i][1].setText(rs.getString("Week2"));
-                oopWeek[i][2].setText(rs.getString("Week3"));
-                oopWeek[i][3].setText(rs.getString("Week4"));
-                oopWeek[i][4].setText(rs.getString("Week5"));
-
-                i++;
-            }
-
-            if (i == 0) {
-                JOptionPane.showMessageDialog(this, "No record found!");
-            }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "DB Error: " + ex.getMessage());
         }
+
+        ResultSet rs = pst.executeQuery();
+
+        clearOOP();
+
+        int i = 0;
+
+        while (rs.next() && i < 10) {
+
+            oopID[i].setText(rs.getString("ID"));
+            oopName[i].setText(rs.getString("Name"));
+
+            oopWeek[i][0].setText(rs.getString("Week1"));
+            oopWeek[i][1].setText(rs.getString("Week2"));
+            oopWeek[i][2].setText(rs.getString("Week3"));
+            oopWeek[i][3].setText(rs.getString("Week4"));
+            oopWeek[i][4].setText(rs.getString("Week5"));
+
+            i++;
+        }
+
+        if (i == 0) {
+            JOptionPane.showMessageDialog(this, "No record found!");
+        }
+
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this,
+                "DB Error: " + ex.getMessage());
     }
+}
 
     private void clearOOP() {
 
